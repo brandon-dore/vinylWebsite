@@ -1,0 +1,28 @@
+{% extends "website/layout.html" %}
+{% block title %}
+    Add a record
+{% endblock %}
+{% block content %}
+<div class="card">
+    <h5 class="card-header elegant-color white-text text-center py-4">
+        <strong>Add a record</strong>
+      </h5>
+      <p>Search for Records instead of adding them youself!!</p>
+    <form action="{% url 'search_results' %}" method="get" class="form-inline" style = "padding-bottom: 3em;">
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <input name="q" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+        aria-label="Search">
+    </form>
+    <div class="card-body">
+        <form method="POST" enctype="multipart/form-data" class="text-center border border-light p-5">
+    
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success">Add Record</button>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

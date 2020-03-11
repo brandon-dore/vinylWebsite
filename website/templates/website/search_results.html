@@ -1,0 +1,31 @@
+{% extends "website/layout.html" %}
+{% block title %}
+    Search Results
+{% endblock %}
+{% block content %}
+<table class="table" style="background-color: whitesmoke;">
+    <thead class="black white-text">
+        <tr>
+            <th scope="col" style="width: 30%">Album Cover</th>
+            <th scope="col">Album</th>
+            <th scope="col">Artist</th>
+            <th scope="col">Format</th>
+            <th scope="col">Price</th>
+            <th scope="col">Label</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in object_list %}
+        <tr>
+            <th scope="row"><img src="{{ record.record_cover.thumbnail.url }}" /></th>
+            <td>{{ record.recordName }}</td>
+            <td>{{ record.artist }}</td>
+            <td>{{ record.record_format}}</td>
+            <td>{{ record.price }}</td>
+            <td>{{ record.label }}</td>
+            <td><a class="fas fa-plus fa-3x" href="/update/{{record.id}}"></a></td>
+        {% endfor %}
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

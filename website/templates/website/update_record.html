@@ -1,0 +1,21 @@
+{% extends 'website/layout.html' %}
+{% block title %}
+    Delete
+{% endblock %}
+{% block content %}
+<div class="card">
+    <h5 class="card-header elegant-color white-text text-center py-4">
+        <strong>Update Record</strong>
+      </h5>
+    <div class="card-body">
+        <form method="POST" enctype="multipart/form-data" class="text-center border border-light p-5">
+    
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" value="Update"  class="btn btn-success">Add Record</button>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

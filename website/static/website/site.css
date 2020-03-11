@@ -1,0 +1,97 @@
+.message {
+    font-weight: 600;
+    color: black;
+}
+
+.navbar {
+    background-color: black;
+    font-size: 1em;
+    font-family: Verdana, Geneva, sans-serif;
+    color: white;
+    padding: 8px 5px 8px 5px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar-brand {
+    font-size: 1.2em;
+    font-weight: 600;
+    content: "|";
+}
+
+.navbar-item {
+    font-variant: small-caps;
+    margin-left: 30px;
+}
+
+.navbar-login {
+    font-variant: small-caps;
+    margin-left: 2100px;
+}
+.navbar-signup {
+    font-variant: small-caps;
+    margin-left: 2150px;
+}
+
+.body-content {
+    padding: 5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[name=record] {
+    width: 20%;
+}
+
+.record_list th,td {
+    text-align: left;
+    padding-right: 15px;
+}
+
+.limiter {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+.login-container{
+    width: 100%;  
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;;
+
+    background-image: url('/static/website/img/login_background.jpg');
+    background-repeat:no-repeat;
+    background-size:100%;
+  }
+
+.login-form {
+    width: 100%;
+  }
+
+.wrap-input {
+    width: 100%;
+    position: relative;
+    background-color: #f7f7f7;
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+  }
+  
+.wrap-login {
+    width: 680px;
+    background: #fff;
+    border-radius: 10px;
+    position: relative;
+  }

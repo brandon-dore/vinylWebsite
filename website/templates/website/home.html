@@ -1,0 +1,31 @@
+{% extends "website/layout.html" %}
+{% block title %}
+    Home
+{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<h1>{{ user.username }}'s Collection <a href="{% url 'add_record' %}"><button type="button" class="btn btn-dark-green">Add Record</button></a></h1>
+    {% if view.record %}
+    <table class="records">
+        <div class="row">
+            {% for record in view.record %}
+                <div class="col-md-3" style = "padding-bottom: 1em;">
+                    <div class="view overlay">
+                        <a href = "info/{{ record.id }}"><img src="{{ record.record_cover.thumbnail.url }}" class="img-fluid " alt="placeholder" style = "width: 100%"></a>
+                        <a href = "info/{{ record.id }}">
+                        <div class="mask flex-center waves-effect waves-light rgba-blue-light" style = "width: 100%;">
+                            <p class="white-text" style="font-size: xx-large;"> {{ record.recordName }}</p>
+                            <p class="white-text" style="font-size: large;"> <br> <br> {{ record.artist }}</p>
+                        </div>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No records have been logged.</p>
+    {% endif %}
+{% else %}
+  <p>You are not logged in</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "website/layout.html" %}
+{% block title %}
+    Graph Test
+{% endblock %}
+{% block content %}
+{% load staticfiles %}
+<body>
+    <canvas id="myChart" width="100" height="20" style="background-color: whitesmoke;"></canvas>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+    <script type="text/javascript">
+        $.get('{% url "line_chart_json" %}', function(data) {
+            var ctx = $("#myChart").get(0).getContext("2d");
+            new Chart(ctx, {
+                type: 'line', 
+                data: data,
+            });
+        });
+    </script>
+    <canvas id="myChart2" width="100" height="20", style = "position: absolute; left: -35%;"></canvas>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+    <script type="text/javascript">
+        $.get('{% url "pie_chart_json" %}', function(data) {
+            var ctx = $("#myChart2").get(0).getContext("2d");
+            new Chart(ctx, {
+                type: 'doughnut', 
+                data: data,
+            });
+        });
+    </script>
+    {% for stats in view.stats %}
+    <p><b>Average Price:</b> {{ stats.avg_price }}</p>
+    <p><b>Minimum Price:</b> {{ stats.min_price}}</p>
+    <p><b>Maximum Price:</b> {{ stats.max_price}}</p>
+   {% endfor %}
+</body>
+{% endblock %}
