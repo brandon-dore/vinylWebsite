@@ -3,8 +3,12 @@
     Delete
 {% endblock %}
 {% block content %}
+<!-- A badge that shows text to warn and confirm that the user wants to delete the record -->
+<div class="badge badge-light text-wrap" style="width: 50rem;">
 <form method="post">{% csrf_token %}
-    <p>Are you sure you want to delete "{{ object }}"?</p>
-    <input type="submit" value="Confirm">
+    <h1>Are you sure you want to delete this record?</h1>
+    <!-- Red button that deletes the record -->
+    <input class="btn btn-danger" type="submit" value="Confirm">
 </form>
+</div>
 {% endblock %}

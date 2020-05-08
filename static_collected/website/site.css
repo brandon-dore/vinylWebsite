@@ -6,7 +6,7 @@
 .navbar {
     background-color: black;
     font-size: 1em;
-    font-family: 'Oswald', sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     color: white;
     padding: 8px 5px 8px 5px;
 }
@@ -19,6 +19,7 @@
 .navbar-brand {
     font-size: 1.2em;
     font-weight: 600;
+    content: "|";
 }
 
 .navbar-item {

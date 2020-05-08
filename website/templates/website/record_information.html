@@ -3,27 +3,29 @@
     Record Information
 {% endblock %}
 {% block content %}
+<!-- Renders a bootstrap card in the centre of the screen -->
 <div class="row">
     <div class="col-md-4"> </div>
     <div class="col-md-4">
         <div class="card card-cascade wider">
+            <!-- Gets the record clicked on from query in views -->
             {% for record in view.record %}
+            <!-- Displays the information (Image, album name, artist, label and price) all in varying sizes/colours dependant on importance -->
             <div class="view view-cascade overlay">
                 <img class="card-img-top" src="{{ record.record_cover.thumbnail.url }}" alt="Card image cap">
                 <a href="#!">
                     <div class="mask rgba-white-slight"></div>
                 </a>
             </div>
-
             <div class="card-body card-body-cascade text-center">
-
                 <h4 class="card-title"><strong>{{ record.recordName }}</strong></h4>
-
                 <h5 class="blue-text pb-2"><strong>{{ record.artist }}</strong></h5>
-
                 <p class="card-text">Label: {{ record.label }}
                     <br> Price: £{{ record.price }} </p>
-                <a class="fas fa-edit fa-2x" href="{% url 'record-update' record.id %}">‎‎‎‎‎‎‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎</a> {% for ownership in view.ownership %}
+                <!-- The edit button -->
+                <a class="fas fa-edit fa-2x" href="{% url 'record-update' record.id %}">‎‎‎‎‎‎‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎</a> 
+                <!-- The delete button, ownership needed here since it will delete from ownership table in view logic -->
+                {% for ownership in view.ownership %}
                 <a class="fas fa-trash fa-2x" href="{% url 'record-delete' ownership.id %}"></a>
                 {% endfor %}
             </div>

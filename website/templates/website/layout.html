@@ -1,9 +1,12 @@
+<!-- BASIC LAYOUT THAT EVERY PAGE EXPANDS OFF -->
 <!DOCTYPE html>
+<!-- Sets the background image -->
 <html style ="background: url('/static/website/img/BackgroundImage.png') no-repeat center center fixed; background-size: cover; height: 100%; overflow-x: hidden; overflow-y: scroll;">
 <head>
     <meta charset="utf-8"/>
+    <!-- Defines the title blocks -->
     <title>{% block title %}{% endblock %}</title>
-    <!-- Loads in static files, uses the css file to format every page AND loads in font awesome -->
+    <!-- Loads in static files, CSS AND loads in font awesome -->
     {% load static %}
     <script src="https://kit.fontawesome.com/f452b2d18d.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,12 +14,22 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <style type="text/css">
+        html,
+        body,
+        .body-content, 
+        header,
+        .view {
+          height: 100%;
+        }
+      </style>
 </head>
 
+<!-- Creates the navbar -->
 <body style ="background-color:transparent !important;">
 <nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
 
-    <a class="navbar-brand" href="{% url 'home' %}">Vinyl Website</a>
+    <a class="navbar-brand" href="{% url 'landing-page' %}">Vinyl Website</a>
   
     <div class="collapse navbar-collapse" id="vinylNavBar">
 
@@ -32,6 +45,7 @@
                 <a class="nav-link" href="{% url 'stats1' %}">Statistics</a>
             </li>
         </ul>
+        <!-- If the user is logged in change the navbar to display name and dropdown to change account details or log out -->
         {% if user.is_authenticated %}
         <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
             <ul class="navbar-nav ml-auto">
@@ -46,6 +60,7 @@
               </li>
             </ul>
         </div>
+        <!-- If the user isn't logged in just display login and sign up buttons there instead -->
         {% else %}
         <form class="form-inline">
             <ul class="navbar-nav mr-auto">
@@ -63,12 +78,16 @@
     </div>
 </nav>
 
-
+<!-- Import the javascript needed for bootstrap -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/js/mdb.min.js"></script>
 <script type="text/javascript"></script>
+<script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+  </script>
 
 <!-- Makes a place for the content on the page  -->
 <div class="body-content">
@@ -79,7 +98,5 @@
         <p>Test Site</p>
     </footer>
 </div>
-
-
 </body>
 </html>

@@ -3,6 +3,7 @@
     Search Results
 {% endblock %}
 {% block content %}
+<!-- Makes a table with headings -->
 <table class="table" style="background-color: whitesmoke;">
     <thead class="black white-text">
         <tr>
@@ -15,6 +16,7 @@
         </tr>
     </thead>
     <tbody>
+        <!-- Populates each row with the info of each record matching (*LIKE*) the search query -->
         {% for record in object_list %}
         <tr>
             <th scope="row"><img src="{{ record.record_cover.thumbnail.url }}" /></th>

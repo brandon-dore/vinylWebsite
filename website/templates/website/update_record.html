@@ -3,18 +3,17 @@
     Delete
 {% endblock %}
 {% block content %}
+<!-- Creates bootstrap card with a header to contatin the title -->
 <div class="card">
     <h5 class="card-header elegant-color white-text text-center py-4">
         <strong>Update Record</strong>
       </h5>
+    <!-- Displays the update info form inside the body of the card -->
     <div class="card-body">
         <form method="POST" enctype="multipart/form-data" class="text-center border border-light p-5">
-    
             {% csrf_token %}
             {{ form.as_p }}
-
-            <button type="submit" value="Update"  class="btn btn-success">Add Record</button>
-
+            <button type="submit" value="Update"  class="btn btn-info btn-block my-4">Update/Add Record</button>
         </form>
     </div>
 </div>

@@ -3,19 +3,28 @@
     Update Information
 {% endblock %}
 {% block content %}
-    <h2>Update Information</h2>
-    <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-        <div>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        {% for error in field.errors %}
-            <p style="color: red">{{ error }}</p>
-        {% endfor %}
+    <!-- Almost identical to signup.html but with diffrent form -->
+    <div class="card" style="max-width: 30rem;">
+        <h5 class="card-header elegant-color white-text text-center py-4">
+            <strong>Update Information</strong>
+          </h5>
+        <div class="card-body">
+            <form method="post" class="text-center border border-light p-5" action="">
+            {% csrf_token %}
+            {% for field in form %}
+                <div>
+                {{ field.label_tag }}<br>
+                {{ field }}
+                </div>
+            {% endfor %}
+            {% if form.errors %}
+                <p style="color: red">Your username and password didn't match. Please try again.</p>
+            {% endif %}
+                <input type="submit" value="Update Information" class = "btn btn-info btn-block my-4">
+                <!-- A piece of user info so they know how to submit the data -->
+                <p>Enter old password if you want it to remain the same</p>
+    
+            </form>
         </div>
-    {% endfor %}
-    <p>Enter old password if you want it to remain the same</p>
-    <button type="submit">Update</button>
-    </form>
+    </div>
 {% endblock %}

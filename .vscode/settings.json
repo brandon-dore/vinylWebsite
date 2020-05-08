@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "c:\\Users\\Brandon Dore\\Desktop\\Vinyl Website\\.venv\\Scripts\\python.exe"
+    "python.pythonPath": "c:\\Users\\Brandon Dore\\Desktop\\Vinyl Website\\.venv\\Scripts\\python.exe",
+    "git.ignoreLimitWarning": true
 }

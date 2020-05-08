@@ -3,37 +3,57 @@
     Graph Test
 {% endblock %}
 {% block content %}
+{% if user.is_authenticated %}
+<!-- Loads files in static folder for javascript to work -->
 {% load staticfiles %}
-<body>
-    <canvas id="myChart" width="100" height="20" style="background-color: whitesmoke;"></canvas>
-
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
-    <script type="text/javascript">
-        $.get('{% url "line_chart_json" %}', function(data) {
-            var ctx = $("#myChart").get(0).getContext("2d");
-            new Chart(ctx, {
-                type: 'line', 
-                data: data,
-            });
-        });
-    </script>
-    <canvas id="myChart2" width="100" height="20", style = "position: absolute; left: -35%;"></canvas>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
-    <script type="text/javascript">
-        $.get('{% url "pie_chart_json" %}', function(data) {
-            var ctx = $("#myChart2").get(0).getContext("2d");
-            new Chart(ctx, {
-                type: 'doughnut', 
-                data: data,
-            });
-        });
-    </script>
-    {% for stats in view.stats %}
-    <p><b>Average Price:</b> {{ stats.avg_price }}</p>
-    <p><b>Minimum Price:</b> {{ stats.min_price}}</p>
-    <p><b>Maximum Price:</b> {{ stats.max_price}}</p>
-   {% endfor %}
-</body>
+<h5 class="card-header elegant-color white-text text-center py-4">
+    <strong>Statistics</strong>
+  </h5>
+        <!-- Line graph of average prices with data grabbed from the view -->
+        <div style= "background-color: whitesmoke;">
+            <h2>Your Average Spend vs Total Average Spend</h2>
+            <canvas id="myChart" width="100" height="20"></canvas>
+            <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+            <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+            <script type="text/javascript">
+                $.get('{% url "line_chart_json" %}', function(data) {
+                    var ctx = $("#myChart").get(0).getContext("2d");
+                    new Chart(ctx, {
+                        type: 'line', 
+                        data: data,
+                    });
+                });
+            </script>
+        </div>
+         <!-- Doughnut chart of ratio of record types with data grabbed from the view -->
+        <div class="row" style ="background-color:whitesmoke;  width: 3500px;">
+            <div class="col-md-6">
+                <h2>‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎‎‏‏‎ ‎‏‏‎ ‎Ratio of Record Types</h2>
+                <canvas id="myChart2" width="100" height="20"></canvas>
+                <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+                <script type="text/javascript" src="{% static 'js/Chart.min.js' %}"></script>
+                <script type="text/javascript">
+                    $.get('{% url "pie_chart_json" %}', function(data) {
+                        var ctx = $("#myChart2").get(0).getContext("2d");
+                        new Chart(ctx, {
+                            type: 'doughnut', 
+                            data: data,
+                        });
+                    });
+                </script>
+            </div>
+             <!-- Text displaying the user min, avg and max price -->
+            <div class="col-md-6">
+                <h2>Price Data</h2>
+                 <!-- Data found from a query on the stats table in the view -->
+                {% for stats in view.stats %}
+                    <p><b>Average Price:</b> {{ stats.avg_price }}</p>
+                    <p><b>Minimum Price:</b> {{ stats.min_price}}</p>
+                    <p><b>Maximum Price:</b> {{ stats.max_price}}</p>
+                {% endfor %}
+            </div>
+        </div>
+{% else %}
+    <h2>You are not logged in</h2>
+{% endif %}
 {% endblock %}

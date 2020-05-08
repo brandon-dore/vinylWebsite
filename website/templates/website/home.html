@@ -1,14 +1,19 @@
+<!-- Uses the HTML defined in the layout.html (ran in the blocks before HTML defined here) -->
 {% extends "website/layout.html" %}
 {% block title %}
     Home
 {% endblock %}
 {% block content %}
+<!-- If the user is logged in this will be shown -->
 {% if user.is_authenticated %}
 <h1>{{ user.username }}'s Collection <a href="{% url 'add_record' %}"><button type="button" class="btn btn-dark-green">Add Record</button></a></h1>
+    <!-- Runs if the query in the home view returns records -->
     {% if view.record %}
     <table class="records">
         <div class="row">
+            <!-- Loops through each record returned -->
             {% for record in view.record %}
+                <!-- Shows the album cover (hoverable, with corrosponding link) in rows of 4 -->
                 <div class="col-md-3" style = "padding-bottom: 1em;">
                     <div class="view overlay">
                         <a href = "info/{{ record.id }}"><img src="{{ record.record_cover.thumbnail.url }}" class="img-fluid " alt="placeholder" style = "width: 100%"></a>
@@ -22,10 +27,12 @@
                 </div>
             {% endfor %}
         </div>
+    <!-- If they have no records, this statement tells them this -->
     {% else %}
         <p>No records have been logged.</p>
     {% endif %}
+<!-- NOT LOGGED IN, this displays this to them clearly -->
 {% else %}
-  <p>You are not logged in</p>
+  <h2>You are not logged in</h2>
 {% endif %}
 {% endblock %}
